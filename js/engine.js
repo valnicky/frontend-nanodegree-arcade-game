@@ -142,7 +142,6 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
         renderEntities();
     }
 
@@ -186,6 +185,7 @@ var Engine = (function(global) {
         'images/char-pink-girl.png',
         'images/char-cat-girl.png',
         'images/char-horn-girl.png',
+        'images/char-princess-girl.png',
         'images/Heart.png',
         'images/Gem Green.png'
 

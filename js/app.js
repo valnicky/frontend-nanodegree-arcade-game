@@ -90,7 +90,7 @@ Enemy.prototype.render = function() {
 
 // Now write your own player class
 var Player = function(playerX, playerY){
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/char-pink-girl.png';
     this.playerX = playerX;
     this.playerY = playerY;
     
@@ -295,6 +295,11 @@ for (var player of players) {
             player.sprite = 'images/char-horn-girl.png';
         }else if (e.target.id === 'pink') {
             player.sprite = 'images/char-pink-girl.png';
+        } else {
+            player.sprite = 'images/char-princess-girl.png';
         }
+
+        localStorage.setItem('myChar', player.sprite);
+        console.log(localeStorage);
     });
 }
