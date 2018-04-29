@@ -6,6 +6,8 @@ var yMove = 80;
 var imgWidth = 80;
 var imgHight = 40;
 
+//number of lives
+var lives = 3;
 
 var Enemy = function(enemyX, enemyY, enemySpeed) {
     // Variables applied to each of our instances go here,
@@ -43,12 +45,25 @@ if( player.playerX < this.enemyX + imgWidth &&
     player.playerY < this.enemyY + imgHight &&
     imgHight + player.playerY > this.enemyY) {
 
-    player.playerX = 200;
-    player.playerY = 390;
+        player.playerX = 200;
+        player.playerY = 390;
 
+        //handle lives
+        if( player.lives === 3 ){
+            player.loseLife( player.life1 );
+        } else if ( player.lives === 2 ){
+            player.loseLife( player.life2 );
+        } else {
+            //game over
+            player.isGameOver = true;
+            setTimeout( function(){
+                player.endGame();
+            }, 1000);
+        }
+        
  
-}
-};
+    }
+}; //fin de enemy.update
 
 
 
@@ -83,9 +98,6 @@ Player.prototype.update = function(){
     if ( this.playerX > 400 ) this.playerX = 400;
     if ( this.playerX < 0 ) this.playerX = 0;
 };
-
-
-
 
 
 //draw player 
@@ -123,6 +135,33 @@ Player.prototype.handleInput = function(key){
     }
 };
 
+//heart class calculates how many lives are
+var Heart = function(x, y) {
+    this.sprite = 'images/Heart.png';
+    this.x = x;
+    this.y = y;
+}
+
+//clear a heart after decreased life
+Heart.prototype.update = function (){
+    if( lives == 3) {
+        heart1.x = 310;
+        heart2.x = 380;
+        heart3.x = 448;
+    } else if ( lives == 2 ) {
+        heart3.x = -500;
+    } else if ( lives == 1) {
+        heart2.x = -500;
+    } else if ( lives == 0 ) {
+        heart1.x = -500;
+    }
+};
+
+//render method to draw hearts
+Heart.prototype.render = function () {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 100);
+}
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -142,6 +181,13 @@ for(var i = 1; i < 4; i++){
 // Place the player object in a variable called player
 var player = new Player(202,404);
 
+//instantiate heart obj.
+var heart1 = new Heart(310, -15);
+var heart2 = new Heart(380, -15);
+var heart3 = new Heart(448, -15);
+
+//array of hearts
+var allHearts = [heart1, heart2, heart3];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
