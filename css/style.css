@@ -1,4 +1,31 @@
 body {
+	margin-top: 0;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    background: #361B28;
+    color: #B6CCD7;
 }
 
+h1{
+	font-family: 'Pacifico', 'Arial';
+	 margin: 12% 3%;
+	 font-size: 88px;
+}
+
+.choosePlayer .player{
+	margin: 0 3%;
+	display: grid;
+	grid-template-rows: 50% 50%;
+	grid-template-columns: 50% 50%;
+	grid-gap: 5%;
+}
+
+.choosePlayer h2{
+	font-family: 'Dancing Script', 'Arial';
+	font-size: 40px;
+}
+
+.choosePlayer{
+	 margin: 0 4%;
+}
