@@ -9,6 +9,12 @@ var imgHight = 40;
 //number of lives
 var lives = 3;
 
+//indexof elements of the gemPositions array
+var gemNumber = 0;
+var isCharSelected = true;
+var play = document.getElementById('players');
+//var players = play.getElementsByClassName('imgPlayer');
+
 var Enemy = function(enemyX, enemyY, enemySpeed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -61,7 +67,6 @@ if( player.playerX < this.enemyX + imgWidth &&
             }, 1000);
         }
         
- 
     }
 }; //fin de enemy.update
 
@@ -162,6 +167,55 @@ Heart.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 100);
 }
 
+//gem class draw and manipulate gems
+var Gem = function (x, y) {
+    this.x = x;
+    this.y = y;
+    this.sprite = 'images/Gem Green.png';
+};
+
+//interact with gem
+Gem.prototype.update = function() {
+    gemWin();
+};
+
+//draw the gem
+Gem.prototype.render = function () {
+    gemWin();
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 100);
+};
+
+//earning gems
+function gemWin() {
+    //if player win the gem
+    if( gem.x - player.x == 19 && (gem.y - player.y == 32 || gem.y - player.y == 40)){
+        //remove gem outside canvas
+        gem.x = -500;
+
+        //not exceed num of obj. to move gems shuffle gemPositions
+        gemNumber += 1;
+        if (gemNumber < 15){
+            gem.x = gemPosition[gemNumber].x;
+            gem.y = gemPosition[gemNumber].y;
+        } else {
+            gemNumber = 0;
+        }
+    }
+}
+
+//array of gemPositions and shuffle the array randomly
+var gemPositions = [{
+    x: 19,
+    y: 271
+}, {
+    x: 120,
+    y: 271
+}
+
+
+
+];
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -189,6 +243,12 @@ var heart3 = new Heart(448, -15);
 //array of hearts
 var allHearts = [heart1, heart2, heart3];
 
+//shuffle gems
+shuffle(gemPositions);
+
+//instantiate gem obj.
+var gem = new Gem(gemPositions[gemNumber].x, gemPositions[gemNumber].y);
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -201,3 +261,40 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+//shuffle function from stackoverflow
+function shuffle(array){
+    var currentIndex = array.length,
+    temporaryValue, randomIndex;
+    while (currentIndex !== 0){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+//when user choose a player
+for (var player of players) {
+    player.addEventListener('click', function(e) {
+        for( let player of player) {
+            player.classList.remove('selected');
+            isCharSelected = 'false';
+        }
+        this.classList.add('selected');
+        isCharSelected = true;
+
+        if(e.target.id === 'boy') {
+            player.sprite = 'image/char-boy.png';
+        }else if (e.target.id === 'cat') {
+            player.sprite = 'images/char-cat-girl.png';
+        }else if(e.target.id === 'horn') {
+            player.sprite = 'images/char-horn-girl.png';
+        }else if (e.target.id === 'pink') {
+            player.sprite = 'images/char-pink-girl.png';
+        }
+    });
+}
