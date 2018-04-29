@@ -3,8 +3,8 @@
 var xMove = 100;
 var yMove = 80;
 
-var imgWidth = 85;
-var imgHight = 65;
+var imgWidth = 80;
+var imgHight = 40;
 
 
 var Enemy = function(enemyX, enemyY, enemySpeed) {
@@ -30,20 +30,21 @@ Enemy.prototype.update = function(dt) {
     this.enemyX += this.enemySpeed * dt;
 
     //enemy back to game
-    if(this.enemyX >= 500){
-        this.enemySpeed = Math.random()*150 +100;
-        this.enemyX = -110;
-    }else{
+    if(this.enemyX >= 510) {
+        this.enemySpeed = Math.random() * 150 + 100;
+        this.enemyX = -80;
+    } else {
         this.enemyX += this.enemySpeed * dt;
     }
 
     //collision detector from developer.mozilla.org/2D_collision
-if(player.playerX < this.enemyX + imgWidth && 
+if( player.playerX < this.enemyX + imgWidth && 
     player.playerX + imgWidth > this.enemyX &&
-    player.playerY < this.enemyY +imgHight &&
-    imgHight + player.playerY > this.enemyY){
+    player.playerY < this.enemyY + imgHight &&
+    imgHight + player.playerY > this.enemyY) {
+
     player.playerX = 200;
-    player.playerY = 451;
+    player.playerY = 390;
 
  
 }
@@ -77,10 +78,10 @@ var Player = function(playerX, playerY){
 // This class requires an update(), render() and
 // a handleInput() method.
 Player.prototype.update = function(){
-    if(this.playerY < 60) this.playerY = 451;
-    if(this.playerY > 451) this.playerY = 451;
-    if(this.playerX > 400) this.playerX = 400;
-    if(this.playerX < 0) this.playerX = 0;
+    if ( this.playerY < 1 ) this.playerY = -7;
+    if ( this.playerY > 451 ) this.playerY = 451;
+    if ( this.playerX > 400 ) this.playerX = 400;
+    if ( this.playerX < 0 ) this.playerX = 0;
 };
 
 
