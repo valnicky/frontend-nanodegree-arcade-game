@@ -30,7 +30,7 @@ h1{
 	 margin: 0 4%;
 }
 
-#modal{
+#modal, #modalWin{
 	border: 20px solid #C8F4F9;
 	color: #F83839;
 	background-color:#7FE5F0;
@@ -40,5 +40,9 @@ h1{
 	height: 80%;
 	margin: 3% 10%;
 	position: fixed;
-	/*z-index: -1;*/
+	cursor: pointer;
+}
+
+.score{
+	color: #7FE5F0;
 }

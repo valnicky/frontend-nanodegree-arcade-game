@@ -56,18 +56,17 @@ if( player.playerX < this.enemyX + imgWidth &&
 
         player.playerX = 200;
         player.playerY = 390;
-        lives -= 1;
         
         //handle lives
-        if( player.lives === 3 ){
+        if( lives == 3 ){
             player.loseLife( player.life1 );
-        } else if ( player.lives === 2 ){
+        } else if ( lives == 2 ){
             player.loseLife( player.life2 );
         } else {
-            //player.loseLife( player.life3 );
+            player.loseLife( player.life3 );
      
             //game over
-            player.isGameOver = true;
+            //player.isGameOver = true;
             setTimeout( function(){
                 player.endGame();
             }, 1000);
@@ -133,7 +132,7 @@ Player.prototype.render = function(){
 
 //collision decrease lives/ hide a heart
 Player.prototype.loseLife = function (life) {
-    player.lives--;
+    lives--;
     player.x = 200;
     player.y = 400;
 }
@@ -208,7 +207,7 @@ Gem.prototype.render = function () {
 //earning gems
 function gemWin() {
     //if player win the gem
-    if( gem.x - player.x == 19 && (gem.y - player.y == 32 || gem.y - player.y == 40)){
+    if( gem.x - player.x == 0 && (gem.y - player.y == 0 || gem.y - player.y == 40)){
         //remove gem outside canvas
         gem.x = -500;
         score += 1;
@@ -298,8 +297,19 @@ function shuffle(array){
 }
 
 Player.prototype.endGame = function(){
-    var modalWin = document.getElementById('modal').style.display='block';
-    $('#modal h2').addEventListener('click', function(){
+    document.getElementById('modal').style.display='block';
+    //WHEN CLICK
+    document.querySelector('#modal h2').addEventListener('click', function(){
         document.getElementById('modal').style.display='none';
+       //Heart.update(); 
+    });
+}
+
+Player.prototype.winGame = function() {
+     document.getElementById('modalWin').style.display='block';
+    //WHEN CLICK
+    document.querySelector('#modalWin h2').addEventListener('click', function(){
+        document.getElementById('modalWin').style.display='none';
+       //Heart.update(); 
     });
 }
