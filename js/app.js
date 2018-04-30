@@ -8,10 +8,13 @@ var imgHight = 40;
 
 //number of lives
 var lives = 3;
+var score = document.querySelector('#scoreNum').html = 0;
+
 
 //indexof elements of the gemPositions array
 var gemNumber = 0;
-var isCharSelected = true;
+
+//var isCharSelected = true;
 var play = document.getElementById('players');
 var avatars = play.getElementsByClassName('imgPlayer');
 
@@ -54,12 +57,15 @@ if( player.playerX < this.enemyX + imgWidth &&
         player.playerX = 200;
         player.playerY = 390;
         lives -= 1;
+        
         //handle lives
         if( player.lives === 3 ){
             player.loseLife( player.life1 );
         } else if ( player.lives === 2 ){
             player.loseLife( player.life2 );
         } else {
+            //player.loseLife( player.life3 );
+     
             //game over
             player.isGameOver = true;
             setTimeout( function(){
@@ -90,7 +96,8 @@ var Player = function(playerX, playerY){
     for (var avatar of avatars) {
     avatar.addEventListener('click', function(e) {
         this.classList.add('selected');
-        isCharSelected = true;
+       
+       // isCharSelected = true;
 
         if(e.target.id == 'boy') {
             player.sprite = 'images/char-boy.png';
@@ -194,7 +201,6 @@ Gem.prototype.update = function() {
 
 //draw the gem
 Gem.prototype.render = function () {
-   
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 100);
      gemWin();
 };
@@ -289,4 +295,11 @@ function shuffle(array){
         array[randomIndex] = temporaryValue;
     }
     return array;
+}
+
+Player.prototype.endGame = function(){
+    var modalWin = document.getElementById('modal').style.display='block';
+    $('#modal h2').addEventListener('click', function(){
+        document.getElementById('modal').style.display='none';
+    });
 }

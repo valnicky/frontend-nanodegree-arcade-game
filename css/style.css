@@ -3,7 +3,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: row;
-    background:rgba(77,77,77,1);
+    background:#513B41;
     color: #1DC690
 }
 
@@ -31,5 +31,14 @@ h1{
 }
 
 #modal{
+	border: 20px solid #C8F4F9;
+	color: #F83839;
+	background-color:#7FE5F0;
+	border-radius: 35px;
 	display: none;
+	width: 80%;
+	height: 80%;
+	margin: 3% 10%;
+	position: fixed;
+	/*z-index: -1;*/
 }
