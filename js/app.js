@@ -1,4 +1,4 @@
-//"use strict"
+
 // Enemies our player must avoid
 var xMove = 100;
 var yMove = 80;
@@ -53,7 +53,7 @@ if( player.playerX < this.enemyX + imgWidth &&
 
         player.playerX = 200;
         player.playerY = 390;
-
+        lives -= 1;
         //handle lives
         if( player.lives === 3 ){
             player.loseLife( player.life1 );
@@ -71,8 +71,6 @@ if( player.playerX < this.enemyX + imgWidth &&
 }; //fin de enemy.update
 
 
-
-
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     if(this.x > 505){
@@ -81,12 +79,6 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.enemyX, this.enemyY);
 };
 
-//if enemy and player collide, reset player to its initial location
-/*Enemy.prototype.handleCollisions = function(){
-    if(this.x)
-}*/
-
-
 
 // Now write your own player class
 var Player = function(playerX, playerY){
@@ -94,7 +86,7 @@ var Player = function(playerX, playerY){
     this.playerX = playerX;
     this.playerY = playerY;
 
-    //choose avatars
+    //when user choose an avatar
     for (var avatar of avatars) {
     avatar.addEventListener('click', function(e) {
         this.classList.add('selected');
@@ -137,7 +129,6 @@ Player.prototype.loseLife = function (life) {
     player.lives--;
     player.x = 200;
     player.y = 400;
-    life.style.display = 'none';
 }
 
 
@@ -299,32 +290,3 @@ function shuffle(array){
     }
     return array;
 }
-
-//when user choose an avatar
-/*var chooseAvatar = function(){
-    for (var avatar of avatars) {
-    avatar.addEventListener('click', function(e) {
-        for( let avatar of avatars) {
-            player.classList.remove('selected');
-            isCharSelected = 'false';
-        }
-        this.classList.add('selected');
-        isCharSelected = true;
-
-        if(e.target.id == 'boy') {
-            player.sprite = 'image/char-boy.png';
-        }else if (e.target.id === 'cat') {
-            player.sprite = 'images/char-cat-girl.png';
-        }else if(e.target.id === 'horn') {
-            player.sprite = 'images/char-horn-girl.png';
-        }else if (e.target.id === 'pink') {
-            player.sprite = 'images/char-pink-girl.png';
-        } else {
-            player.sprite = 'images/char-princess-girl.png';
-        }
-
-        localStorage.setItem('myChar', player.sprite);
-        console.log(localeStorage);
-    });
-}
-}*/

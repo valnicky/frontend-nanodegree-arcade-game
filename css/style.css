@@ -3,7 +3,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: row;
-    background: #3b3b3b;
+    background:rgba(77,77,77,1);
     color: #1DC690
 }
 
