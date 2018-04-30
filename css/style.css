@@ -29,3 +29,7 @@ h1{
 .choosePlayer{
 	 margin: 0 4%;
 }
+
+#modal{
+	display: none;
+}

@@ -10,22 +10,29 @@
 </head>
 <body>
 	<div class="choosePlayer">
-		<h2>Choose Player</h2>
-		<div class="players">
-			<img src="images/char-pink-girl.png" class="pink"  id = "pink" tabindex="0" alt="pink">
+		<h2>Choose your Avatar</h2>
+		<div id="players">
+			<img src="images/char-pink-girl.png" class="pink imgPlayer"  id = "pink" tabindex="0" alt="pink">
 			
-			<img src="images/char-horn-girl.png" class="horn" id = "horn" tabindex="0" alt="horn">
+			<img src="images/char-horn-girl.png" class="horn imgPlayer" id = "horn" tabindex="0" alt="horn">
 			
-			<img src="images/char-cat-girl.png" class="cat" id = "cat" tabindex="0" alt="cat">
+			<img src="images/char-cat-girl.png" class="cat imgPlayer" id = "cat" tabindex="0" alt="cat">
 
-			<img src="images/char-princess-girl.png" class="princess" id = "princess" tabindex="0" alt="princess">
+			<img src="images/char-princess-girl.png" class="princess imgPlayer" id = "princess" tabindex="0" alt="princess">
 
-			<img src="images/char-boy.png" class="boy" id = "boy" tabindex="0" alt="boy">
+			<img src="images/char-boy.png" class="boy imgPlayer" id = "boy" tabindex="0" alt="boy">
+		</div>
+		<div class="score">
+			<p>Score: 0</p>
 		</div>
 	</div>	
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
     <h1>Frogger Game</h1>
+
+    <div id="modal">
+		<h1>You loose!</h1>
+    	<h2>Click to start a new game!</h2></div>
 </body>
 </html>

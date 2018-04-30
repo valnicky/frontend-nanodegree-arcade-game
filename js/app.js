@@ -13,7 +13,7 @@ var lives = 3;
 var gemNumber = 0;
 var isCharSelected = true;
 var play = document.getElementById('players');
-//var players = play.getElementsByClassName('imgPlayer');
+var avatars = play.getElementsByClassName('imgPlayer');
 
 var Enemy = function(enemyX, enemyY, enemySpeed) {
     // Variables applied to each of our instances go here,
@@ -93,8 +93,30 @@ var Player = function(playerX, playerY){
     this.sprite = 'images/char-pink-girl.png';
     this.playerX = playerX;
     this.playerY = playerY;
-    
+
+    //choose avatars
+    for (var avatar of avatars) {
+    avatar.addEventListener('click', function(e) {
+        this.classList.add('selected');
+        isCharSelected = true;
+
+        if(e.target.id == 'boy') {
+            player.sprite = 'images/char-boy.png';
+        }else if (e.target.id === 'cat') {
+            player.sprite = 'images/char-cat-girl.png';
+        }else if(e.target.id === 'horn') {
+            player.sprite = 'images/char-horn-girl.png';
+        }else if (e.target.id === 'pink') {
+            player.sprite = 'images/char-pink-girl.png';
+        } else {
+            player.sprite = 'images/char-princess-girl.png';
+        }
+
+    });
+}
 };
+
+
 // This class requires an update(), render() and
 // a handleInput() method.
 Player.prototype.update = function(){
@@ -181,8 +203,9 @@ Gem.prototype.update = function() {
 
 //draw the gem
 Gem.prototype.render = function () {
-    gemWin();
+   
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 100);
+     gemWin();
 };
 
 //earning gems
@@ -191,7 +214,7 @@ function gemWin() {
     if( gem.x - player.x == 19 && (gem.y - player.y == 32 || gem.y - player.y == 40)){
         //remove gem outside canvas
         gem.x = -500;
-
+        score += 1;
         //not exceed num of obj. to move gems shuffle gemPositions
         gemNumber += 1;
         if (gemNumber < 15){
@@ -277,17 +300,18 @@ function shuffle(array){
     return array;
 }
 
-//when user choose a player
-for (var player of players) {
-    player.addEventListener('click', function(e) {
-        for( let player of player) {
+//when user choose an avatar
+/*var chooseAvatar = function(){
+    for (var avatar of avatars) {
+    avatar.addEventListener('click', function(e) {
+        for( let avatar of avatars) {
             player.classList.remove('selected');
             isCharSelected = 'false';
         }
         this.classList.add('selected');
         isCharSelected = true;
 
-        if(e.target.id === 'boy') {
+        if(e.target.id == 'boy') {
             player.sprite = 'image/char-boy.png';
         }else if (e.target.id === 'cat') {
             player.sprite = 'images/char-cat-girl.png';
@@ -303,3 +327,4 @@ for (var player of players) {
         console.log(localeStorage);
     });
 }
+}*/
