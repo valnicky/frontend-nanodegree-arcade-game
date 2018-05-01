@@ -129,8 +129,8 @@ Player.prototype.render = function(){
 //collision decrease lives/ hide a heart
 Player.prototype.loseLife = function (life) {
     lives--;
-    player.x = 200;
-    player.y = 400;
+    this.x = 200;
+    this.y = 400;
 }
 
 
