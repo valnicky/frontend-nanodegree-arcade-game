@@ -11,7 +11,7 @@ var lives = 3;
 var score = document.querySelector('#scoreNum').html = 0;
 
 
-//indexof elements of the gemPositions array
+//indexof elements of the gemPosition array
 var gemNumber = 0;
 
 //var isCharSelected = true;
@@ -200,20 +200,20 @@ Gem.prototype.update = function() {
 
 //draw the gem
 Gem.prototype.render = function () {
+    gemWin();
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 100);
-     gemWin();
 };
 
 //earning gems
 function gemWin() {
     //if player win the gem
-    if( gem.x - player.x == 0 && (gem.y - player.y == 0 || gem.y - player.y == 40)){
+    if( gem.x - player.x == 20 && (gem.y - player.y == 20 || gem.y - player.y == 40)){
         //remove gem outside canvas
         gem.x = -500;
         score += 1;
-        //not exceed num of obj. to move gems shuffle gemPositions
+        //not exceed num of obj. to move gems shuffle gemPosition
         gemNumber += 1;
-        if (gemNumber < 15){
+        if (gemNumber < 1){
             gem.x = gemPosition[gemNumber].x;
             gem.y = gemPosition[gemNumber].y;
         } else {
@@ -223,7 +223,7 @@ function gemWin() {
 }
 
 //array of gemPositions and shuffle the array randomly
-var gemPositions = [{
+var gemPosition = [{
     x: 19,
     y: 271
 }, {
@@ -263,10 +263,10 @@ var heart3 = new Heart(448, -15);
 var allHearts = [heart1, heart2, heart3];
 
 //shuffle gems
-shuffle(gemPositions);
+shuffle(gemPosition);
 
 //instantiate gem obj.
-var gem = new Gem(gemPositions[gemNumber].x, gemPositions[gemNumber].y);
+var gem = new Gem(gemPosition[gemNumber].x, gemPosition[gemNumber].y);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -301,7 +301,7 @@ Player.prototype.endGame = function(){
     //WHEN CLICK
     document.querySelector('#modal h2').addEventListener('click', function(){
         document.getElementById('modal').style.display='none';
-       //Heart.update(); 
+        init();
     });
 }
 
@@ -310,6 +310,11 @@ Player.prototype.winGame = function() {
     //WHEN CLICK
     document.querySelector('#modalWin h2').addEventListener('click', function(){
         document.getElementById('modalWin').style.display='none';
-       //Heart.update(); 
+        init();
     });
+}
+
+function init(){
+    lives = 3;
+    score = 0;
 }

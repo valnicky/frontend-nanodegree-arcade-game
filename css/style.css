@@ -1,4 +1,7 @@
 body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
 	margin-top: 0;
     text-align: center;
     display: flex;
@@ -9,7 +12,7 @@ body {
 
 h1{
 	font-family: 'Pacifico', 'Arial';
-	 margin: 12% 3%;
+	 margin: 12% 2%;
 	 font-size: 88px;
 }
 
@@ -18,21 +21,22 @@ h1{
 	display: grid;
 	grid-template-rows: 50% 50%;
 	grid-template-columns: 50% 50%;
-	grid-gap: 5%;
+	grid-gap: 3%;
 }
 
 .choosePlayer h2{
 	font-family: 'Dancing Script', 'Arial';
 	font-size: 40px;
+	margin: 5%;
 }
 
 .choosePlayer{
-	 margin: 0 4%;
+	 margin: 0 3%;
 }
 
 #modal, #modalWin{
 	border: 20px solid #C8F4F9;
-	color: #F83839;
+	color:#6897bb;
 	background-color:#7FE5F0;
 	border-radius: 35px;
 	display: none;
@@ -44,5 +48,7 @@ h1{
 }
 
 .score{
+	display: flex;
+	flex-direction: column;
 	color: #7FE5F0;
 }
