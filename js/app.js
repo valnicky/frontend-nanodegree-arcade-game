@@ -8,8 +8,7 @@ var imgHight = 40;
 
 //number of lives
 var lives = 3;
-var score = document.querySelector('#scoreNum').html = 0;
-
+var score = 0;
 
 //indexof elements of the gemPosition array
 var gemNumber = 0;
@@ -66,7 +65,6 @@ if( player.playerX < this.enemyX + imgWidth &&
             player.loseLife( player.life3 );
      
             //game over
-            //player.isGameOver = true;
             setTimeout( function(){
                 player.endGame();
             }, 1000);
@@ -95,8 +93,6 @@ var Player = function(playerX, playerY){
     for (var avatar of avatars) {
     avatar.addEventListener('click', function(e) {
         this.classList.add('selected');
-       
-       // isCharSelected = true;
 
         if(e.target.id == 'boy') {
             player.sprite = 'images/char-boy.png';
@@ -193,6 +189,7 @@ var Gem = function (x, y) {
     this.sprite = 'images/Gem Green.png';
 };
 
+
 //interact with gem
 Gem.prototype.update = function() {
     gemWin();
@@ -207,19 +204,33 @@ Gem.prototype.render = function () {
 //earning gems
 function gemWin() {
     //if player win the gem
-    if( gem.x - player.x == 20 && (gem.y - player.y == 20 || gem.y - player.y == 40)){
+    if( player.playerX < gem.x + imgWidth && 
+    player.playerX + imgWidth > gem.x &&
+    player.playerY < gem.y + imgHight &&
+    imgHight + player.playerY > gem.y){
         //remove gem outside canvas
         gem.x = -500;
         score += 1;
+        document.querySelector('#scoreNum').innerHTML = score;
         //not exceed num of obj. to move gems shuffle gemPosition
         gemNumber += 1;
-        if (gemNumber < 1){
+        if (gemNumber < 15){
             gem.x = gemPosition[gemNumber].x;
             gem.y = gemPosition[gemNumber].y;
+
         } else {
             gemNumber = 0;
         }
+
+        if (score === 5) {
+            //you win the game
+            setTimeout( function(){
+                player.winGame();
+            }, 1000);
+        }
+         
     }
+
 }
 
 //array of gemPositions and shuffle the array randomly
@@ -229,10 +240,46 @@ var gemPosition = [{
 }, {
     x: 120,
     y: 271
+}, {
+    x: 221,
+    y: 271
+}, {
+    x: 322,
+    y: 271
+}, {
+    x: 423,
+    y: 271
+}, {
+    x: 19,
+    y: 197
+}, {
+    x: 120,
+    y: 197
+}, {
+    x: 221,
+    y: 197
+}, {
+    x: 322,
+    y: 197
+}, {
+    x: 423,
+    y: 197
+}, {
+    x: 19,
+    y: 105
+}, {
+    x: 120,
+    y: 105
+}, {
+    x: 221,
+    y: 105
+}, {
+    x: 322,
+    y: 105
+}, {
+    x: 423,
+    y: 105
 }
-
-
-
 ];
 
 
@@ -317,4 +364,6 @@ Player.prototype.winGame = function() {
 function init(){
     lives = 3;
     score = 0;
+    document.querySelector('#scoreNum').innerHTML = score;
 }
+

@@ -12,8 +12,8 @@ body {
 
 h1{
 	font-family: 'Pacifico', 'Arial';
-	 margin: 12% 2%;
-	 font-size: 88px;
+	margin: 12% 2%;
+	font-size: 88px;
 }
 
 .choosePlayer .player{
@@ -36,15 +36,19 @@ h1{
 
 #modal, #modalWin{
 	border: 20px solid #C8F4F9;
-	color:#6897bb;
-	background-color:#7FE5F0;
-	border-radius: 35px;
+	color: #6897bb;
+	background-color: #7FE5F0;
+	border-radius: 42px;
 	display: none;
-	width: 80%;
+	width: 50%;
 	height: 80%;
-	margin: 3% 10%;
+	margin: 3% 25%;
 	position: fixed;
 	cursor: pointer;
+}
+
+#modalWin h1{
+	margin: 0 auto;
 }
 
 .score{
